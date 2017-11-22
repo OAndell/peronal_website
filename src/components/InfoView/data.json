@@ -1,0 +1,24 @@
+{
+  "sections": [
+    {
+      "title": "<h2><i class='fa fa-user'></i> About </h2>",
+      "body": "<p>I am a 23 year old aspiring software developer currently studying my third year to become a master of science in the field of information technology at Linköping University.</p>"
+    },
+    {
+      "title": "<h2><i class='fa fa-graduation-cap'></i> Education </h2>",
+      "body": "<h3>Master of science in IT at Linköping university</h3><p class='dates'>Aug 2015 - Current</p><p>A technical master of science degree in information technology with large focus on group work and problem solving.<p/>"
+    },
+    {
+      "title": "<h2><i class='fa fa-building'></i> Work experince </h2>",
+      "body": "<h3>Tutor in problem based learning (PBL) at Linköping University</h3><p class='dates'>Aug - Dec 2017</p><p>Beside my own studies i tutored a group of first year IT students in PBL. The group and I meet twice a week to discuss and solve different problems relating to their studies.</p><h3>Saab Training & Simulation</h3><p class='dates'>Jun - Aug 2017</p><p>In the summmer of 2017 i worked at Saab Training & Simulation in Huskvarna. During my employment i worked with automating the process of migrating older data and schematics to a newer system.<p/><h3>Soldier in the Swedish Armed Forces</h3><p class='dates'>Aug 2013 - Aug 2015</p><p>Traffic/logistic soldier in the national MOVCON-platoon at the logistic regiment in Skövde. As a traffic soldier in the Swedish armed forces I was part of the movement control unit which mission outside of the standard military duty was to handle logistics and transportation of military units. My duties included combat training, vehicle service, transportation and communication.</p>"
+    },
+    {
+      "title": "<h2><i class='fa fa-group'></i> Extra ciricular activities </h2>",
+      "body": "<h3>Webb </h3><p class='dates'>2017/2018</p>"
+    },
+    {
+      "title": "<h2><i class='fa fa-code'></i> Technical skills </h2>",
+      "body": "todo"
+    }
+  ]
+}
