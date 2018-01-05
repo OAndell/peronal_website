@@ -3,7 +3,7 @@ var spacing = 15;
 var tiles = [];
 
 function setup() {
-  var canvas = createCanvas(windowWidth, windowHeight*1.5);
+  var canvas = createCanvas(windowWidth,window.innerWidth);
   canvas.position(0,0);
   canvas.style('z-index', '-1');
   strokeWeight(1);
@@ -34,7 +34,7 @@ function drawpattern(){
 
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight*1.5);
+  resizeCanvas(windowWidth, window.innerWidth);
   tiles = [];
   initPattern();
   drawpattern();
