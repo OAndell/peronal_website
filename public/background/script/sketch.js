@@ -3,23 +3,24 @@ var spacing = 15;
 var tiles = [];
 
 function setup() {
-  var canvas = createCanvas(windowWidth,window.innerWidth);
+  var canvas = createCanvas(window.innerWidth, window.innerHeight);
   canvas.position(0,0);
   canvas.style('z-index', '-1');
   strokeWeight(1);
-  //stroke('#f2b632');
   initPattern();
   drawpattern();
 }
 
 function initPattern() {
-  for (var x = 0; x < width; x = x + spacing) {
-    for (var y = 0; y < height; y = y + spacing) {
+  var opacity = 255;
+  for (var y = 0; y < height; y = y + spacing) {
+    opacity = opacity - 5;
+    for (var x = 0; x < width; x = x + spacing) {
       if(random(1) > 0.5){
-        tiles.push(new Tile(x,y,1,'#587544'));
+        tiles.push(new Tile(x,y,1, color('#587544'),opacity));
       }
       else {
-        tiles.push(new Tile(x,y,0,'#587544'));
+        tiles.push(new Tile(x,y,0,color('#587544'),opacity));
       }
     }
   }
@@ -34,33 +35,24 @@ function drawpattern(){
 
 
 function windowResized() {
-  resizeCanvas(windowWidth, window.innerWidth);
+  resizeCanvas(window.innerWidth, window.innerHeight);
   tiles = [];
   initPattern();
   drawpattern();
 }
 
+
 function draw() {
 }
 
 
-/*function mousePressed(){
-  for (var i = 0; i < tiles.length; i++) {
-    if(dist(mouseX,mouseY,tiles[i].x,tiles[i].y) < spacing*random(1,3)){
-      tiles[i].flip();
-      tiles[i].draw();
-    }
-  }
-  drawpattern();
-}*/
-
-
-function Tile(x,y,val,color){
+function Tile(x,y,val,color,opacity){
   this.x = x;
   this.y = y;
   this.color = color;
-  this.draw = function(color) {
-    stroke(this.color);
+  this.opacity = opacity;
+  this.draw = function() {
+    stroke(red(color),green(color),blue(color),opacity);
     if(val == 0){
         line(x,y+spacing,x+spacing,y);
     }else {

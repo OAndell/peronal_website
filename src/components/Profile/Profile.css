@@ -1,6 +1,8 @@
 .profileBackground{
 	textAlign: center;
-	display:block;
+	display:inline-block;
+	padding-left: 20px;
+	padding-right: 20px;
 	background: var(--background);
 	border-color: var(--main);
 	border-style: solid;
@@ -12,8 +14,9 @@
 
 .bigProfileImage{
 	margin-top:10px;
-	width: 280px;
-	height: 280px;
+	width: auto;
+	max-width: 280px;
+	max-height: 280px;
 	border-radius: 70%;
 	border-color: var(--main);
 	border-style: solid;
