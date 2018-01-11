@@ -1,9 +1,7 @@
 
-var spacing = 15;
+var spacing =25;
 var tiles = [];
 var tileRows = [];
-var activeAnimation = true;
-
 
 function setup() {
   var canvas = createCanvas(window.innerWidth, window.innerHeight);
@@ -13,22 +11,24 @@ function setup() {
   //Added to prevent lag for other animations
   var descDiv = document.getElementById("descID");
   descDiv.onmousedown = function(){
-    activeAnimation = false;
+    noLoop();
   }
   descDiv.onmouseout = function(){
-    activeAnimation = true;
+    loop();
   }
 
-  strokeWeight(1);
+  strokeWeight(1.5);
   initPattern();
   drawpattern();
+  fill('#131521');
+  noLoop();
 
 }
 
 function initPattern() {
   var opacity = 255;
   for (var y = 0; y < height; y = y + spacing) {
-    opacity = opacity - 5;
+    opacity = opacity - 8;
     var tileCols = [];
     for (var x = 0; x < width; x = x + spacing) {
       if(random(1) > 0.5){
@@ -59,22 +59,29 @@ function windowResized() {
   drawpattern();
 }
 
-function mousePressed(){
-  if(activeAnimation){
-    for (var i = 0; i < tileRows.length; i++) {
-      for (var j = 0; j < tileRows[i].length; j++) {
-        if(dist(tileRows[i][j].x,tileRows[i][j].y,mouseX,mouseY)<40){
-            tileRows[i][j].flip();
-        }
-      }
-    }
-  }
-}
 
 
 function draw(){
-  if(activeAnimation){
-    drawpattern();
+    background('#131521');
+    for (var i = 0; i < tileRows.length; i++) {
+      for (var j = 0; j < tileRows[i].length; j++) {
+        if(dist(tileRows[i][j].x,tileRows[i][j].y,mouseX,mouseY)<50){
+            tileRows[i][j].flip();
+        }
+        tileRows[i][j].draw();
+      }
+    }
+}
+
+var isLooping = false;
+function mousePressed() {
+  if(isLooping){
+    noLoop();
+    isLooping =false;
+  }
+  else{
+    loop();
+    isLooping =true;
   }
 }
 
@@ -87,6 +94,7 @@ function Tile(x,y,val,color,opacity){
   this.flipAnimation = false;
   this.angleFactor = 0;
   this.draw = function() {
+    noStroke();
     stroke(red(color),green(color),blue(color),opacity);
     push();
     if(this.flipAnimation){
@@ -103,7 +111,7 @@ function Tile(x,y,val,color,opacity){
     translate(x+spacing/2, y+spacing/2);
     rotate(PI/2*this.angleFactor);
     this.angleFactor = this.angleFactor + 0.1;
-    if(this.angleFactor >= 1){
+    if(this.angleFactor >= 1 || !isLooping){
       this.flipAnimation = false;
       this.angleFactor = 0;
       (val == 1 ? val = 0: val = 1); //flip
@@ -123,5 +131,5 @@ function Tile(x,y,val,color,opacity){
 
   this.flip = function() {
       this.flipAnimation = true;
-    }
+  }
 }
