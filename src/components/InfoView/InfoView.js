@@ -10,8 +10,6 @@ export default class InfoView extends React.Component {
 
   constructor(props){
 		super(props)
-    this.state = {data : data}
-    this.getDataFromUrl(urlData);
 	 }
 
   getIndexes(array){
@@ -22,26 +20,14 @@ export default class InfoView extends React.Component {
     return indexes;
 	}
 
-  getDataFromUrl(url){
-		fetch(url, {mode: 'cors'})
-			.then(res => res.json())
-			.then(function(data) {
-				this.setState({data : data});
-			}.bind(this))
-		.catch(function(data) {
-				console.log("error fetching resume");
-				console.log(data);
-		}.bind(this));
-	}
-
   render() {
     return(
 			<div className="resumeHolder">
 				<Accordion allowMultiple={true}>
-					{this.getIndexes(data.sections).map(item => {
+					{this.getIndexes(this.props.data).map(item => {
             return (
-              <AccordionItem title={<div className="title" dangerouslySetInnerHTML={{__html: this.state.data.sections[item].title}}/>}>
-                  <div dangerouslySetInnerHTML={{__html: this.state.data.sections[item].body}}/>
+              <AccordionItem title={<div className="title" dangerouslySetInnerHTML={{__html: this.props.data[item].title}}/>}>
+                  <div dangerouslySetInnerHTML={{__html: this.props.data[item].body}}/>
               </AccordionItem>
             );
           })}

@@ -5,13 +5,6 @@ import './Profile.css';
 export default class Profile extends React.Component {
 	constructor(props){
 		super(props)
-		this.image = props.image
-		this.name = props.name
-		this.title = props.title
-		this.email = props.email
-		this.location = props.location
-		this.linkdin = props.linkdin
-		this.github = props.github
 	}
 
 
@@ -30,10 +23,9 @@ export default class Profile extends React.Component {
 
 
 	render() {
-			console.log(this.props.data)
 	    return(
 			<div className="profileBackground">
-				<img src={this.image} className="bigProfileImage"/>
+				<img src={this.props.data.image} className="bigProfileImage"/>
 				<h1>{this.props.data.name}</h1>
 				<h2>{this.props.data.title}</h2>
 				<hr className="profiledivider"/>

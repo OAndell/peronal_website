@@ -21,11 +21,11 @@ class Main extends Component {
           <div className="main_grid">
               <div className="main_profile" id="profileID">
   				        <Profile
-                    image={"https://andell.eu/profileImages/oscar.jpg"}
                     data = {this.state.profileData}/>
               </div>
               <div className="main_desc" id="descID">
-  				      <InfoView className="main_desc"/>
+  				      <InfoView className="main_desc"
+                  data={this.state.infoData}/>
               </div>
          </div>
       </div>
@@ -34,9 +34,14 @@ class Main extends Component {
 
  componentDidMount() {
 
-   API.getPersonData().then(response => {
+   API.getPersonData("Oscar Andell").then(response => {
        this.setState({
          profileData: response[0]
+       })
+       API.getResume(this.state.profileData.id).then(response => {
+          this.setState({
+            infoData: response
+          })
        })
    });
 
