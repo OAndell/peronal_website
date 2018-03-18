@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import './Main.css';
 import Profile from '../../components/Profile/Profile';
 import InfoView from '../../components/InfoView/InfoView'
+import API from '../../API/API'
+import defaultProfileData from '../../defaultdata/defaultProfile.json'
 
 class Main extends Component {
   constructor(props){
     super(props)
-    this.state = {mobileView : false};
+    this.state = {
+      mobileView : false,
+      profileData: defaultProfileData,
+      infoData:[]
+    };
   }
 
   render() {
@@ -16,12 +22,7 @@ class Main extends Component {
               <div className="main_profile" id="profileID">
   				        <Profile
                     image={"https://andell.eu/profileImages/oscar.jpg"}
-                    name="Oscar Andell"
-                    title="IT student"
-                    email="Oscar@Andell.eu"
-                    location="Linköping, Sweden"
-                    github="https://github.com/OAndell/"
-                    linkdin="https://www.linkedin.com/in/oscar-andell-156ba0138/"/>
+                    data = {this.state.profileData}/>
               </div>
               <div className="main_desc" id="descID">
   				      <InfoView className="main_desc"/>
@@ -32,6 +33,13 @@ class Main extends Component {
   }
 
  componentDidMount() {
+
+   API.getPersonData().then(response => {
+       this.setState({
+         profileData: response[0]
+       })
+   });
+
   const checkMobileSize = () => {
      if (window.innerWidth<= 1075){
        this.setState({mobileView : true});

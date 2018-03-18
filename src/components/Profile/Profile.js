@@ -16,29 +16,31 @@ export default class Profile extends React.Component {
 
 
 	displayGithub(){
-		if(this.github != null){
-			return <p><a href={this.github}><i className="fa fa-github"></i></a></p>;
+		if(this.props.data.github != null){
+			return <p><a href={this.props.data.github}><i className="fa fa-github"></i></a></p>;
 		}
 
 	}
 
 	displayLinkedin(){
-		if(this.linkdin != null){
-			return <p><a href={this.linkdin}><i className="fa fa-linkedin"></i></a></p>;
+		if(this.props.data.github != null){
+			return <p><a href={this.props.data.linkedin}><i className="fa fa-linkedin"></i></a></p>;
 		}
 	}
 
 
 	render() {
+			console.log(this.props.data)
 	    return(
 			<div className="profileBackground">
 				<img src={this.image} className="bigProfileImage"/>
-				<h1>{this.name}</h1>
-				<h2>{this.title}</h2>
+				<h1>{this.props.data.name}</h1>
+				<h2>{this.props.data.title}</h2>
 				<hr className="profiledivider"/>
 				<div className="profileTextHolder">
-					<p><i className="fa fa-location-arrow"></i> {this.location}</p>
-					<p><i className="fa fa-envelope"></i> {this.email}</p>
+					<p><i className="fa fa-location-arrow"></i> {this.props.data.location}</p>
+					<p><i className="fa fa-envelope"></i> {this.props.data.email}</p>
+					<p><i class='fa fa-address-card'/> <a href={this.props.data.resume}>Resume</a></p>
 				</div>
 				<hr className="profiledivider"/>
 				<table className="iconLinksHolder">
