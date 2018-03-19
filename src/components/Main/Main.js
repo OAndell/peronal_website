@@ -4,8 +4,10 @@ import Profile from '../../components/Profile/Profile';
 import InfoView from '../../components/InfoView/InfoView'
 import API from '../../API/API'
 import defaultProfileData from '../../defaultdata/defaultProfile.json'
+import defaultResumeData from '../../defaultdata/defaultResume.json'
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import LoginWindow from '../../components/LoginWindow/LoginWindow'
+import ControlPanel from '../../components/ControlPanel/ControlPanel'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 
@@ -18,7 +20,7 @@ class Main extends Component {
     this.state = {
       mobileView : false,
       profileData: defaultProfileData,
-      infoData:[],
+      infoData:defaultResumeData,
       loginWindowOpen: false
     };
   }
@@ -40,7 +42,7 @@ class Main extends Component {
 
     return (
       <MuiThemeProvider  muiTheme={muiTheme}>
-        <LoginWindow/>
+        <ControlPanel/>
         <div className={(this.state.mobileView ? "main_mobile": "main")}>
             <div className="main_grid">
                 <div className="main_profile" id="profileID">
@@ -63,11 +65,11 @@ class Main extends Component {
        this.setState({
          profileData: response[0]
        })
-       API.getResume(this.state.profileData.id).then(response => {
+       /*API.getResume(this.state.profileData.id).then(response => {
           this.setState({
             infoData: response
           })
-       })
+       })*/
    });
 
   const checkMobileSize = () => {

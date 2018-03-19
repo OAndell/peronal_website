@@ -11,7 +11,7 @@ module.exports = {
       }
     }).then(x => x.json());
   },
- 
+
   getPersonData(name){
     let args={name:name};
     return fetch( BASE_URL + "/person", {
@@ -32,6 +32,21 @@ module.exports = {
         'Content-Type': 'application/json'
       }
     }).then(x => x.json());
+  },
+
+  login(username,password){
+    let args={
+      username:username,
+      password:password
+    }
+    return fetch( BASE_URL + "/user", {
+      method: 'POST',
+      body: JSON.stringify(args),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(x => x.json());
   }
+
 
 }

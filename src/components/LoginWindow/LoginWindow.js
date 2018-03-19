@@ -5,57 +5,78 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import TextField from 'material-ui/TextField';
-import './LoginWindow.css'
+import API from '../../API/API'
 
 export default class LoginWindow extends React.Component {
-  state = {
-    open: false,
-  };
+  constructor(props){
+    super(props)
+    this.state = {
+      submitDisabled: true,
+    };
+    this.username = "";
+    this.password = "";
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-  handleOpen = () => {
-    this.setState({open: true});
-  };
+  checkSubmitButton(){
+    if(this.username != "" && this.password != ""){
+      this.setState({submitDisabled: false})
+    }
+    else {
+      this.setState({submitDisabled: true})
+    }
 
-  handleClose = () => {
-    this.setState({open: false});
-  };
+  }
+
+  handleSubmit(){
+    /*API.login(this.username,this.password).then(response => {
+        if(response.respone = "true"){
+          this.props.autenticate();
+          this.props.handleClose();
+        }
+    });*/
+    this.props.autenticate();
+    this.props.handleClose();
+  }
 
   render() {
     const actions = [
       <FlatButton
         label="Cancel"
         primary={true}
-        onClick={this.handleClose}
+        onClick={this.props.handleClose}
       />,
       <FlatButton
         label="Submit"
         primary={true}
-        disabled={true}
-        onClick={this.handleClose}
+        disabled={this.state.submitDisabled}
+        onClick={this.handleSubmit}
       />,
     ];
-
     return (
       <div>
-        <FloatingActionButton
-          className="login_float_button"
-          backgroundColor="#92C26B"
-          iconStyle={{fill: '#131521'}}
-          onClick={this.handleOpen}>
-          <EditorModeEdit/>
-        </FloatingActionButton>
         <Dialog
           title={"Login"}
           actions={actions}
           modal={true}
-          open={this.state.open}
+          open={this.props.open}
         >
         <TextField
-          hintText="Username"/><br />
+          hintText="Username"
+          floatingLabelText="Username"
+          onChange={(e) => {
+            this.username = e.target.value
+            this.checkSubmitButton();
+          }}/>
+          <br />
         <TextField
           hintText="Password"
           floatingLabelText="Password"
           type="password"
+          onChange={(e) => {
+            this.password = e.target.value;
+            this.checkSubmitButton();
+          }}
         />
         </Dialog>
       </div>
