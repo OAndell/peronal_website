@@ -2,6 +2,7 @@ let BASE_URL = 'http://api.andell.eu';
 
 module.exports = {
 
+  //Get all persons
   getPersons(){
     return fetch( BASE_URL + "/person", {
       method: 'GET',
@@ -10,7 +11,7 @@ module.exports = {
       }
     }).then(x => x.json());
   },
-
+ 
   getPersonData(name){
     let args={name:name};
     return fetch( BASE_URL + "/person", {
@@ -32,5 +33,5 @@ module.exports = {
       }
     }).then(x => x.json());
   }
-  
+
 }

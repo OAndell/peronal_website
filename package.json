@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "material-ui": "^0.20.0",
     "prop-types": "^15.6.0",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
     "react-expandable-listview": "^0.6.1",
     "react-grid-system": "^3.1.0",
+    "react-mfb": "^0.6.0",
     "react-scripts": "1.0.17"
   },
   "scripts": {

@@ -65,7 +65,7 @@ function windowResized() {
 
 
 function draw(){
-    if(random(1)>0.8){
+    if(random(1)>0.75){
       var row = int(random(1,tileRows.length-10));
       var col = int(random(1,tileRows[row].length-1));
       var tilePos = {

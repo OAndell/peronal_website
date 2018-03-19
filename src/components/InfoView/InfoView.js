@@ -4,7 +4,6 @@ import { Accordion, AccordionItem } from 'react-sanfona';
 import './InfoView.css';
 import data from './data.json';
 
-var urlData = 'https://andell.eu/resume/oscarData.json';
 
 export default class InfoView extends React.Component {
 
