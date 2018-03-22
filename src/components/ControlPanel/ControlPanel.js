@@ -1,10 +1,6 @@
 import React from 'react';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
-import TextField from 'material-ui/TextField';
 import LoginWindow from '../../components/LoginWindow/LoginWindow'
 import EditWindow from '../../components/EditWindow/EditWindow'
 import './ControlPanel.css'
@@ -12,7 +8,11 @@ import './ControlPanel.css'
 export default class ControlPanel extends React.Component {
   state = {
     loginWindowOpen: false,
-    autenticated: false
+    autenticated: false,
+    user: {
+      username:"",
+      password:""
+    }
   };
 
   handleLoginWindowOpen = () => {
@@ -24,11 +24,23 @@ export default class ControlPanel extends React.Component {
   };
 
   handleEditWindowClose = () => {
-    this.setState({autenticated: false});
+    this.setState({
+      autenticated: false,
+      user: {
+        username:"",
+        password:""
+      }
+    });
   };
 
-  handleAutenticated = () => {
-    this.setState({autenticated: true});
+  handleAutenticated = (username, password) => {
+    this.setState({
+      autenticated: true,
+      user: {
+        username:username,
+        password:password
+      }
+    });
   };
 
 
@@ -48,7 +60,10 @@ export default class ControlPanel extends React.Component {
           autenticate={this.handleAutenticated}/>
         <EditWindow
           open={this.state.autenticated}
-          handleClose={this.handleEditWindowClose}/>
+          handleClose={this.handleEditWindowClose}
+          dataResume={this.props.dataResume}
+          dataProfile={this.props.dataProfile}
+          user={this.state.user}/>
       </div>
     );
   }

@@ -1,11 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './Profile.css';
 
 export default class Profile extends React.Component {
-	constructor(props){
-		super(props)
-	}
 
 
 	displayGithub(){

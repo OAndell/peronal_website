@@ -1,15 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Accordion, AccordionItem } from 'react-sanfona';
 import './InfoView.css';
-import data from './data.json';
 
 
 export default class InfoView extends React.Component {
-
-  constructor(props){
-		super(props)
-	 }
 
   getIndexes(array){
     var indexes = [];

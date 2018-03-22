@@ -42,7 +42,9 @@ class Main extends Component {
 
     return (
       <MuiThemeProvider  muiTheme={muiTheme}>
-        <ControlPanel/>
+        <ControlPanel
+          dataProfile={this.state.profileData}
+          dataResume={this.state.infoData}/>
         <div className={(this.state.mobileView ? "main_mobile": "main")}>
             <div className="main_grid">
                 <div className="main_profile" id="profileID">
@@ -65,11 +67,11 @@ class Main extends Component {
        this.setState({
          profileData: response[0]
        })
-       /*API.getResume(this.state.profileData.id).then(response => {
+       API.getResume(this.state.profileData.id).then(response => {
           this.setState({
             infoData: response
           })
-       })*/
+       })
    });
 
   const checkMobileSize = () => {

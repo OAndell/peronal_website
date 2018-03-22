@@ -39,13 +39,45 @@ module.exports = {
       username:username,
       password:password
     }
-    return fetch( BASE_URL + "/user", {
+    return fetch( BASE_URL + "/auth", {
       method: 'POST',
       body: JSON.stringify(args),
       headers: {
         'Content-Type': 'application/json'
       }
     }).then(x => x.json());
+  },
+
+  updateProfileInfo(username,password,newdata){
+    console.log(username);
+    let args={
+      username:username,
+      password:password,
+      newdata:newdata
+    }
+    return fetch( BASE_URL + "/edit_person", {
+      method: 'POST',
+      body: JSON.stringify(args),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(x => x.json());
+  },
+
+  updateResumeInfo(username,password,newdata){
+    let args={
+      username:username,
+      password:password,
+      newdata:newdata
+    }
+    return fetch( BASE_URL + "/edit_resume", {
+      method: 'POST',
+      body: JSON.stringify(args),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(x => x.json());
+
   }
 
 

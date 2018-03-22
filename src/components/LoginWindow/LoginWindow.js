@@ -1,9 +1,6 @@
 import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import TextField from 'material-ui/TextField';
 import API from '../../API/API'
 
@@ -19,7 +16,7 @@ export default class LoginWindow extends React.Component {
   }
 
   checkSubmitButton(){
-    if(this.username != "" && this.password != ""){
+    if(this.username !== "" && this.password !== ""){
       this.setState({submitDisabled: false})
     }
     else {
@@ -29,14 +26,14 @@ export default class LoginWindow extends React.Component {
   }
 
   handleSubmit(){
-    /*API.login(this.username,this.password).then(response => {
-        if(response.respone = "true"){
-          this.props.autenticate();
-          this.props.handleClose();
-        }
-    });*/
-    this.props.autenticate();
-    this.props.handleClose();
+    API.login(this.username,this.password).then(response => {
+      if(response.success === true){
+            this.props.autenticate(this.username,this.password);
+            this.props.handleClose();
+      }else {
+        window.alert("Wrong username or password");
+      }
+      });
   }
 
   render() {
@@ -54,7 +51,6 @@ export default class LoginWindow extends React.Component {
       />,
     ];
     return (
-      <div>
         <Dialog
           title={"Login"}
           actions={actions}
@@ -79,7 +75,6 @@ export default class LoginWindow extends React.Component {
           }}
         />
         </Dialog>
-      </div>
     );
   }
 }
