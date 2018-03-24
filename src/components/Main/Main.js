@@ -68,6 +68,7 @@ class Main extends Component {
          profileData: response[0]
        })
        API.getResume(this.state.profileData.id).then(response => {
+          response = JSON.parse((JSON.stringify(response).replace(/%%%/g, "'")))
           this.setState({
             infoData: response
           })

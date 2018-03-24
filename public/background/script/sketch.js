@@ -30,7 +30,7 @@ function initPattern() {
     opacity = opacity - 8;
     var tileCols = [];
     for (var x = 0; x < width; x = x + spacing) {
-      if(random(1) > 0.5){
+      if(random(1) > 0.9){
         tileCols.push(new Tile(x,y,1, color('#587544'),opacity))
         //tileCols.push(new Tile(x,y,1, color(random(50,255),random(50,255),random(50,255)),opacity))
       }

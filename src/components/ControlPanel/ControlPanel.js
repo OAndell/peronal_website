@@ -1,6 +1,7 @@
 import React from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
+import ActionLockOpen from 'material-ui/svg-icons/action/lock-open';
 import LoginWindow from '../../components/LoginWindow/LoginWindow'
 import EditWindow from '../../components/EditWindow/EditWindow'
 import './ControlPanel.css'
@@ -52,7 +53,7 @@ export default class ControlPanel extends React.Component {
           backgroundColor="#92C26B"
           iconStyle={{fill: '#131521'}}
           onClick={this.handleLoginWindowOpen}>
-          <EditorModeEdit/>
+          <ActionLockOpen/>
         </FloatingActionButton>
         <LoginWindow
           open={this.state.loginWindowOpen}

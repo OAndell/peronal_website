@@ -10,6 +10,7 @@ export default class EditWindow extends React.Component {
   constructor(props){
     super(props)
     this.handleSubmitProfileInfo = this.handleSubmitProfileInfo.bind(this);
+    this.handleSubmitResumeSection = this.handleSubmitResumeSection.bind(this);
   }
 
   getIndexes(array){
@@ -29,11 +30,14 @@ export default class EditWindow extends React.Component {
   }
 
   handleSubmitResumeSection(){
-    API.updateResumeInfo(
-      this.props.user.username,
-      this.props.user.password,
-      this.props.dataResume
-    );
+    for(var i = 0; i < this.props.dataResume.length; i++){
+      API.updateResumeInfo(
+        this.props.dataProfile.id,
+        this.props.user.username,
+        this.props.user.password,
+        this.props.dataResume[i]
+      )
+    }
   }
 
   render() {
@@ -46,18 +50,12 @@ export default class EditWindow extends React.Component {
     ];
     return (
         <Dialog
-          title={"Edit"}
+          title={"Edit info for " + this.props.dataProfile.name}
           actions={actions}
           modal={true}
           autoScrollBodyContent={true}
           open={this.props.open}>
           <h3>Basic Info</h3>
-          <TextField
-          hintText="Name"
-          floatingLabelText="Name"
-          defaultValue={this.props.dataProfile.name}
-          onChange={(e) => {this.props.dataProfile.name = e.target.value}}
-          /><br/>
           <TextField
           hintText="Title"
           floatingLabelText="Title"
@@ -75,6 +73,12 @@ export default class EditWindow extends React.Component {
           floatingLabelText="Email"
           defaultValue={this.props.dataProfile.email}
           onChange={(e) => {this.props.dataProfile.email = e.target.value}}
+          /><br/>
+          <TextField
+          hintText="ImageURL"
+          floatingLabelText="ImageURL"
+          defaultValue={this.props.dataProfile.image}
+          onChange={(e) => {this.props.dataProfile.image = e.target.value}}
           /><br/>
           <TextField
           hintText="ResumeURL"
@@ -102,14 +106,6 @@ export default class EditWindow extends React.Component {
             return (
               <div>
                 <TextField
-                   hintText="#"
-                   type="number"
-                   floatingLabelText="#"
-                   style = {{width: 30}}
-                   defaultValue={this.props.dataResume[index].displayorder}
-                   onChange={(e) => {this.props.dataResume[index].displayorder = e.target.value}}/>
-                   &nbsp;
-                <TextField
                    hintText="Title"
                    floatingLabelText="Title"
                    fullWidth={true}
@@ -129,6 +125,9 @@ export default class EditWindow extends React.Component {
                </div>
             );
           })}
+          <RaisedButton label="Update Resume Info"
+          primary={true}
+          onClick={this.handleSubmitResumeSection}/>
         </Dialog>
 
     );

@@ -1,7 +1,12 @@
 let BASE_URL = 'http://api.andell.eu';
+//let BASE_URL = 'http://192.168.1.4:5000';
+
+let SINGLE_QUOTATION = "%%%";
 
 module.exports = {
-
+  getQuoteReplaceString(){
+    return "%%%"
+  },
   //Get all persons
   getPersons(){
     return fetch( BASE_URL + "/person", {
@@ -55,7 +60,7 @@ module.exports = {
       password:password,
       newdata:newdata
     }
-    return fetch( BASE_URL + "/edit_person", {
+    return fetch( BASE_URL + "/person_edit", {
       method: 'POST',
       body: JSON.stringify(args),
       headers: {
@@ -64,20 +69,35 @@ module.exports = {
     }).then(x => x.json());
   },
 
-  updateResumeInfo(username,password,newdata){
+  updateResumeInfo(id,username,password,newdata){
+
     let args={
+      id:id,
       username:username,
       password:password,
       newdata:newdata
     }
-    return fetch( BASE_URL + "/edit_resume", {
+    return fetch( BASE_URL + "/resume_edit", {
+      method: 'POST',
+      body: JSON.stringify(args).replace(/'/g, this.getQuoteReplaceString()),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(x => x.json());
+  },
+
+  addResumeSection(username,password){
+    let args={
+      username:username,
+      password:password
+    }
+    return fetch( BASE_URL + "/resume_add", {
       method: 'POST',
       body: JSON.stringify(args),
       headers: {
         'Content-Type': 'application/json'
       }
     }).then(x => x.json());
-
   }
 
 
