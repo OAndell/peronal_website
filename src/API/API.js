@@ -1,7 +1,4 @@
-let BASE_URL = 'http://api.andell.eu';
-//let BASE_URL = 'http://192.168.1.4:5000';
-
-let SINGLE_QUOTATION = "%%%";
+let BASE_URL = 'https://api.andell.eu';
 
 module.exports = {
   getQuoteReplaceString(){
