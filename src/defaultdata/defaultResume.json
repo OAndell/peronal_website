@@ -1,22 +1,6 @@
 [
     {
-      "title": "<h2><i class='fa fa-user'></i> About </h2>",
-      "body": "<p>I am a 23 year old aspiring software developer currently studying my third year to become a master of science in the field of information technology at Linköping University.</p>"
-    },
-    {
-      "title": "<h2><i class='fa fa-graduation-cap'></i> Education </h2>",
-      "body": "<h3>Master of science in IT at Linköping university</h3><p class='dates'>Aug 2015 - Current</p><p>A master of science degree in information technology that merges communication with advanced technical skills. The degree implements problem based learning and has a large focus on group work and problem solving to mimic real world scenarios.<p/>"
-    },
-    {
-      "title": "<h2><i class='fa fa-building'></i> Work experience </h2>",
-      "body": "<h3>Tutor in problem based learning (PBL) at Linköping University</h3><p class='dates'>Aug - Dec 2017</p><p>Beside my own studies I tutor a group of first year IT students in PBL. The group and I meet twice a week to discuss and solve different problems relating to their studies.</p><h3>Saab Training & Simulation</h3><p class='dates'>Jun - Aug 2017</p><p>In the summer of 2017 i worked at Saab Training & Simulation in Huskvarna. During my employment i worked with automating the process of migrating older data and schematics to a newer system.<p/><h3>Soldier in the Swedish Armed Forces</h3><p class='dates'>Aug 2013 - Aug 2015</p><p>Traffic/logistic soldier in the national MOVCON-platoon at the logistic regiment in Skövde. As a traffic soldier in the Swedish armed forces I was part of the movement control unit which mission outside of the standard military duty was to handle logistics and transportation of military units. My duties included combat training, vehicle service, transportation and communication.</p>"
-    },
-    {
-      "title": "<h2><i class='fa fa-group'></i> Extra curricular activities </h2>",
-      "body": "<h3> Web committee for Datateknologsektionen </h3><p class='dates'>Aug 2017 - current</p> <p>The web committee is mainly tasked with maintaining and developing the section website, <a href='https://d-sektionen.se/'>D-sektionen.se</a>. Personally I have together with a team of students worked on creating a web app for booking/overseeing of the sections storages on campus.</p>"
-    },
-    {
-      "title": "<h2><i class='fa fa-code'></i> Technical skills </h2>",
-      "body": "<p>I am well versed in the Java programming language and have been using it heavily during my studies and in personal projects. Like for example this Android application I made for keeping track of the Swedish parlament: <a href='https://github.com/OAndell/Riksdagen'>Github.com/OAndell/Riksdagen</a>.</p><p>I am familiar with Javascript and web development and have experience with the frameworks Redux and React. With these tools I have among other things worked on a web app for booking as well as this site.</p><p>I also have some experience with technologies like Python, MySQL and databases.</p>"
+      "title": "<h2> Connecting to server... </h2>",
+      "body": "<p>Connecting to server...</p>"
     }
   ]
