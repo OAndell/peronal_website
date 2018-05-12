@@ -1,5 +1,6 @@
 import React from 'react';
 import './Profile.css';
+import Paper from 'material-ui/Paper';
 
 export default class Profile extends React.Component {
 
@@ -18,27 +19,34 @@ export default class Profile extends React.Component {
 	}
 
 
+
 	render() {
+		const style = {
+			textAlign: 'center',
+			display: 'inline-block',
+		};
 	    return(
-			<div className="profileBackground">
-				<img src={this.props.data.image} className="bigProfileImage"/>
-				<h1>{this.props.data.name}</h1>
-				<h2>{this.props.data.title}</h2>
-				<hr className="profiledivider"/>
-				<div className="profileTextHolder">
-					<p><i className="fa fa-location-arrow"></i> {this.props.data.location}</p>
-					<p><i className="fa fa-envelope"></i> {this.props.data.email}</p>
-					<p><i class='fa fa-address-card'/> <a href={this.props.data.resume}>Resume</a></p>
-				</div>
-				<hr className="profiledivider"/>
-				<table className="iconLinksHolder">
-					<tr>
-						<th>{this.displayGithub()}</th>
-							&nbsp;
-						<th>{this.displayLinkedin()}</th>
-						</tr>
-				</table>
-			</div>
+				<Paper style={style} zDepth={1}>
+					<div className="profileBackground">
+						<img src={this.props.data.image} className="bigProfileImage"/>
+						<h1>{this.props.data.name}</h1>
+						<h2>{this.props.data.title}</h2>
+						<hr className="profiledivider"/>
+						<div className="profileTextHolder">
+							<p><i className="fa fa-location-arrow"></i> {this.props.data.location}</p>
+							<p><i className="fa fa-envelope"></i> {this.props.data.email}</p>
+							<p><i class='fa fa-address-card'/> <a href={this.props.data.resume}>Resume</a></p>
+						</div>
+						<hr className="profiledivider"/>
+						<table className="iconLinksHolder">
+							<tr>
+								<th>{this.displayGithub()}</th>
+									&nbsp;
+								<th>{this.displayLinkedin()}</th>
+								</tr>
+						</table>
+					</div>
+				</Paper>
 		);
     }
 }

@@ -37,6 +37,7 @@ class Main extends Component {
         canvasColor:"#131521",
         borderColor: '#a3a1a1',
         disabledColor: "#a3a1a1",
+        shadowColor: "#92C26B"
       },
     });
 

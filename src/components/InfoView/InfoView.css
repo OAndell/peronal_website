@@ -1,9 +1,6 @@
 .resumeHolder{
 	display:block;
 	background: var(--background);
-	border-color: var(--main);
-	border-style: solid;
-	border-width: 3px;
 	color:var(--main);
 	text-align:left;
 	padding:20px;
