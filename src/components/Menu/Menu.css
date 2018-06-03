@@ -1,0 +1,11 @@
+.menu{
+  left: 15px;
+  top: 10px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu_button{
+  margin: 5px;
+}

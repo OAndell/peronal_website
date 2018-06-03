@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import './Main.css';
 import Profile from '../../components/Profile/Profile';
-import InfoView from '../../components/InfoView/InfoView'
-import API from '../../API/API'
+import InfoView from '../../components/InfoView/InfoView';
+import Menu from '../../components/Menu/Menu';
+import API from '../../API/API';
 import defaultProfileData from '../../defaultdata/defaultProfile.json'
 import defaultResumeData from '../../defaultdata/defaultResume.json'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ControlPanel from '../../components/ControlPanel/ControlPanel'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
 
 
 
@@ -21,10 +23,24 @@ class Main extends Component {
       mobileView : false,
       profileData: defaultProfileData,
       infoData:defaultResumeData,
-      loginWindowOpen: false
+      allPersonsData:[],
     };
+    this.fetchAndUpdate = this.fetchAndUpdate.bind(this);
   }
 
+  fetchAndUpdate(name){
+    API.getPersonData(name).then(response => {
+        this.setState({
+          profileData: response[0]
+        })
+        API.getResume(this.state.profileData.id).then(response => {
+           response = JSON.parse((JSON.stringify(response).replace(/%%%/g, "'")))
+           this.setState({
+             infoData: response
+           })
+        })
+    });
+  }
 
 
   //TODO mabye not hardcode colors, or redo app in material design?
@@ -45,7 +61,9 @@ class Main extends Component {
       <MuiThemeProvider  muiTheme={muiTheme}>
         <ControlPanel
           dataProfile={this.state.profileData}
-          dataResume={this.state.infoData}/>
+          dataResume={this.state.infoData}
+          dataAllPersons={this.state.allPersonsData}
+          updateCallback={this.fetchAndUpdate}/>
         <div className={(this.state.mobileView ? "main_mobile": "main")}>
             <div className="main_grid">
                 <div className="main_profile" id="profileID">
@@ -64,17 +82,15 @@ class Main extends Component {
 
  componentDidMount() {
 
-   API.getPersonData("Oscar Andell").then(response => {
+   API.getPersons().then(response => {
        this.setState({
-         profileData: response[0]
-       })
-       API.getResume(this.state.profileData.id).then(response => {
-          response = JSON.parse((JSON.stringify(response).replace(/%%%/g, "'")))
-          this.setState({
-            infoData: response
-          })
+         allPersonsData: response
        })
    });
+
+  this.fetchAndUpdate("Oscar Andell");
+
+
 
   const checkMobileSize = () => {
      if (window.innerWidth<= 1075){

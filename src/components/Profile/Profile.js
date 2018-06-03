@@ -26,7 +26,7 @@ export default class Profile extends React.Component {
 			display: 'inline-block',
 		};
 	    return(
-				<Paper style={style} zDepth={1}>
+				<Paper style={style} zDepth={2}>
 					<div className="profileBackground">
 						<img src={this.props.data.image} className="bigProfileImage"/>
 						<h1>{this.props.data.name}</h1>

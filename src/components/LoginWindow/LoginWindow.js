@@ -22,7 +22,6 @@ export default class LoginWindow extends React.Component {
     else {
       this.setState({submitDisabled: true})
     }
-
   }
 
   handleSubmit(){

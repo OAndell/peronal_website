@@ -3,14 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/icons": "^1.1.0",
     "material-ui": "^0.20.0",
     "prop-types": "^15.6.0",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
     "react-expandable-listview": "^0.6.1",
+    "react-floating-button-menu": "^1.0.8",
     "react-grid-system": "^3.1.0",
     "react-mfb": "^0.6.0",
-    "react-scripts": "1.0.17"
+    "react-mui-speeddial": "0.0.6",
+    "react-scripts": "1.0.17",
+    "react-speed-dial": "^0.4.7"
   },
   "scripts": {
     "start": "react-scripts start",

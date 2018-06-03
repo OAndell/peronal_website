@@ -1,12 +1,17 @@
 import React from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ActionLockOpen from 'material-ui/svg-icons/action/lock-open';
-import LoginWindow from '../../components/LoginWindow/LoginWindow'
-import EditWindow from '../../components/EditWindow/EditWindow'
+import LoginWindow from '../../components/LoginWindow/LoginWindow';
+import EditWindow from '../../components/EditWindow/EditWindow';
+import Menu from '../../components/Menu/Menu';
+
 import './ControlPanel.css'
+
+
 
 export default class ControlPanel extends React.Component {
   state = {
+    isMenuOpen:false,
     loginWindowOpen: false,
     autenticated: false,
     user: {
@@ -47,13 +52,10 @@ export default class ControlPanel extends React.Component {
   render() {
     return (
       <div>
-        <FloatingActionButton
-          className="login_float_button"
-          backgroundColor="#92C26B"
-          iconStyle={{fill: '#131521'}}
-          onClick={this.handleLoginWindowOpen}>
-          <ActionLockOpen/>
-        </FloatingActionButton>
+        <Menu
+          loginCallback={this.handleLoginWindowOpen}
+          updateCallback={this.props.updateCallback}
+          dataAllPersons={this.props.dataAllPersons}/>
         <LoginWindow
           open={this.state.loginWindowOpen}
           handleClose={this.handleLoginWindowClose}
@@ -65,6 +67,7 @@ export default class ControlPanel extends React.Component {
           dataProfile={this.props.dataProfile}
           user={this.state.user}/>
       </div>
+
     );
   }
 }
