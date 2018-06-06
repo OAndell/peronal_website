@@ -6,6 +6,8 @@ import Menu from '../../components/Menu/Menu';
 import API from '../../API/API';
 import defaultProfileData from '../../defaultdata/defaultProfile.json'
 import defaultResumeData from '../../defaultdata/defaultResume.json'
+import defaultTheme from '../../defaultdata/defaultTheme.json'
+
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ControlPanel from '../../components/ControlPanel/ControlPanel'
@@ -43,18 +45,16 @@ class Main extends Component {
   }
 
 
-  //TODO mabye not hardcode colors, or redo app in material design?
   render() {
     const muiTheme = getMuiTheme({
       palette: {
-        primary1Color: "#92C26B",
-        primary2Color: "#131521",
-        textColor: "#92C26B",
-        canvasColor:"#131521",
-        borderColor: '#a3a1a1',
-        disabledColor: "#a3a1a1",
-        shadowColor: "#92C26B"
+        primary1Color: defaultTheme.main,
+        textColor: defaultTheme.textColor,
+        canvasColor:defaultTheme.background,
+        shadowColor: defaultTheme.main,
+        disabledColor: defaultTheme.textColor2,
       },
+
     });
 
     return (
@@ -89,8 +89,6 @@ class Main extends Component {
    });
 
   this.fetchAndUpdate("Oscar Andell");
-
-
 
   const checkMobileSize = () => {
      if (window.innerWidth<= 1075){

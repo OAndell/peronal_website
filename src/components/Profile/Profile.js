@@ -1,21 +1,24 @@
 import React from 'react';
 import './Profile.css';
 import Paper from 'material-ui/Paper';
+import Divider from '@material-ui/core/Divider';
+
 
 export default class Profile extends React.Component {
 
 
 	displayGithub(){
-		if(this.props.data.github != null){
-			return <p><a href={this.props.data.github}><i className="fa fa-github"></i></a></p>;
+		if(this.props.data.github === ""){
+			return;
 		}
-
+		return <p><a href={this.props.data.github}><i className="fa fa-github"></i></a></p>;
 	}
 
 	displayLinkedin(){
-		if(this.props.data.github != null){
-			return <p><a href={this.props.data.linkedin}><i className="fa fa-linkedin"></i></a></p>;
+		if(this.props.data.github === ""){
+			return;
 		}
+		return <p><a href={this.props.data.linkedin}><i className="fa fa-linkedin"></i></a></p>;
 	}
 
 

@@ -27,6 +27,7 @@ export default class EditWindow extends React.Component {
       this.props.user.password,
       this.props.dataProfile
     );
+    this.props.updateCallback(this.props.dataProfile.name);
   }
 
   handleSubmitResumeSection(){
@@ -125,6 +126,9 @@ export default class EditWindow extends React.Component {
                </div>
             );
           })}
+          <RaisedButton label="Add Section"
+          primary={true}/>
+          <br/>
           <RaisedButton label="Update Resume Info"
           primary={true}
           onClick={this.handleSubmitResumeSection}/>

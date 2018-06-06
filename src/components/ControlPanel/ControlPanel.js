@@ -65,7 +65,8 @@ export default class ControlPanel extends React.Component {
           handleClose={this.handleEditWindowClose}
           dataResume={this.props.dataResume}
           dataProfile={this.props.dataProfile}
-          user={this.state.user}/>
+          user={this.state.user}
+          updateCallback={this.props.updateCallback}/>
       </div>
 
     );

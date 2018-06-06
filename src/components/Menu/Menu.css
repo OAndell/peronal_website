@@ -9,3 +9,20 @@
 .menu_button{
   margin: 5px;
 }
+
+
+.menu_button_animation {
+    background-color: red;
+    position: relative;
+    animation-name: example;
+    animation-duration: 0.2s;
+    animation-direction: reverse;
+}
+
+
+
+
+@keyframes example {
+    0%   {left:0px;}
+    100% {left:-200px;}
+}
