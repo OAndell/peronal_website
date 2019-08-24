@@ -7,14 +7,9 @@ import API from '../../API/API';
 import defaultProfileData from '../../defaultdata/defaultProfile.json'
 import defaultResumeData from '../../defaultdata/defaultResume.json'
 import defaultTheme from '../../defaultdata/defaultTheme.json'
-
-
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ControlPanel from '../../components/ControlPanel/ControlPanel'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
-
-
 
 
 
@@ -28,7 +23,20 @@ class Main extends Component {
       allPersonsData:[],
     };
     this.fetchAndUpdate = this.fetchAndUpdate.bind(this);
+    this.getCurrentPageFromURL = this.getCurrentPageFromURL.bind(this);
   }
+
+ getCurrentPageFromURL(availablePages){
+  let url = window.location.href;
+  let page=url.split("/")[3]; // http//Andell.eu/PAGE
+ 
+  for (let i = 0; i < availablePages.length; i++) { 
+    if ( availablePages[i].name .split(" ")[0].toLocaleLowerCase() == page.toLocaleLowerCase()) {
+      return  availablePages[i].name;      
+    }    
+  }
+  return "Oscar Andell"
+}
 
   fetchAndUpdate(name){
     API.getPersonData(name).then(response => {
@@ -81,15 +89,15 @@ class Main extends Component {
   }
 
  componentDidMount() {
-
    API.getPersons().then(response => {
        this.setState({
          allPersonsData: response
        })
+      let pageToLoad = this.getCurrentPageFromURL(response);
+      this.fetchAndUpdate(pageToLoad);
    });
-
-  this.fetchAndUpdate("Oscar Andell");
-
+  //this.getCurrentPageFromURL();
+  //this.fetchAndUpdate("Oscar Andell");
   const checkMobileSize = () => {
      if (window.innerWidth<= 1075){
        this.setState({mobileView : true});
@@ -101,6 +109,8 @@ class Main extends Component {
    checkMobileSize();
    window.addEventListener('resize', checkMobileSize);
  }
+
+
 }
 
 

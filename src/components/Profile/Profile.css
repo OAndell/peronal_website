@@ -34,5 +34,5 @@
 }
 
 a{
-	color:var(--main);
-}
+	color: inherit;
+ }
