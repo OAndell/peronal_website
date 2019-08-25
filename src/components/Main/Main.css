@@ -3,6 +3,8 @@
   flex-direction: column;
   text-align: center;
   margin:70px;
+  top: 10px;
+  position: absolute;
 }
 
 .main .main_grid{
@@ -29,6 +31,8 @@
   flex-wrap:wrap;
   text-align: center;
   margin:0px;
+  top: 10px;
+  position: absolute;
 }
 
 .main_mobile .main_grid{

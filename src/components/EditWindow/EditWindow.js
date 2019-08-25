@@ -11,6 +11,8 @@ export default class EditWindow extends React.Component {
     super(props)
     this.handleSubmitProfileInfo = this.handleSubmitProfileInfo.bind(this);
     this.handleSubmitResumeSection = this.handleSubmitResumeSection.bind(this);
+    this.handleAddNewResumeSection = this.handleAddNewResumeSection.bind(this);
+
   }
 
   getIndexes(array){
@@ -28,6 +30,7 @@ export default class EditWindow extends React.Component {
       this.props.dataProfile
     );
     this.props.updateCallback(this.props.dataProfile.name);
+    this.props.handleClose();
   }
 
   handleSubmitResumeSection(){
@@ -39,6 +42,15 @@ export default class EditWindow extends React.Component {
         this.props.dataResume[i]
       )
     }
+    this.props.handleClose();
+  }
+  handleAddNewResumeSection(){
+    API.addResumeSection(
+      this.props.dataProfile.id,
+      this.props.user.username, 
+      this.props.user.password,
+      );
+      this.props.handleClose();
   }
 
   render() {
@@ -127,7 +139,8 @@ export default class EditWindow extends React.Component {
             );
           })}
           <RaisedButton label="Add Section"
-          primary={true}/>
+          primary={true}
+          onClick={this.handleAddNewResumeSection}/>
           <br/>
           <RaisedButton label="Update Resume Info"
           primary={true}

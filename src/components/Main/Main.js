@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import P5Wrapper from 'react-p5-wrapper';
+import Background from '../../components/Background/Background'
 import './Main.css';
 import Profile from '../../components/Profile/Profile';
 import InfoView from '../../components/InfoView/InfoView';
@@ -24,7 +27,7 @@ class Main extends Component {
     };
     this.fetchAndUpdate = this.fetchAndUpdate.bind(this);
     this.getCurrentPageFromURL = this.getCurrentPageFromURL.bind(this);
-  }
+    }
 
  getCurrentPageFromURL(availablePages){
   let url = window.location.href;
@@ -50,6 +53,14 @@ class Main extends Component {
            })
         })
     });
+
+    if(name=="Anton Andell"){
+      defaultTheme.main = "#fcba03";
+      defaultTheme.textColor = "#fcba03";
+      defaultTheme.background = "#fcba03";
+      defaultTheme.textColor2 = "#fcba03";
+    }
+   
   }
 
 
@@ -62,11 +73,11 @@ class Main extends Component {
         shadowColor: defaultTheme.main,
         disabledColor: defaultTheme.textColor2,
       },
-
     });
 
     return (
       <MuiThemeProvider  muiTheme={muiTheme}>
+        <P5Wrapper sketch={Background}/>
         <ControlPanel
           dataProfile={this.state.profileData}
           dataResume={this.state.infoData}
@@ -96,8 +107,6 @@ class Main extends Component {
       let pageToLoad = this.getCurrentPageFromURL(response);
       this.fetchAndUpdate(pageToLoad);
    });
-  //this.getCurrentPageFromURL();
-  //this.fetchAndUpdate("Oscar Andell");
   const checkMobileSize = () => {
      if (window.innerWidth<= 1075){
        this.setState({mobileView : true});

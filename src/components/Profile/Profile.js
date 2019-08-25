@@ -1,7 +1,6 @@
 import React from 'react';
 import './Profile.css';
 import Paper from 'material-ui/Paper';
-import Divider from '@material-ui/core/Divider';
 
 
 export default class Profile extends React.Component {

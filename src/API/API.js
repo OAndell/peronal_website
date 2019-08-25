@@ -51,7 +51,6 @@ module.exports = {
   },
 
   updateProfileInfo(username,password,newdata){
-    console.log(username);
     let args={
       username:username,
       password:password,
@@ -83,10 +82,11 @@ module.exports = {
     }).then(x => x.json());
   },
 
-  addResumeSection(username,password){
+  addResumeSection(id,username,password){
     let args={
       username:username,
-      password:password
+      password:password,
+      personID: id
     }
     return fetch( BASE_URL + "/resume_add", {
       method: 'POST',
