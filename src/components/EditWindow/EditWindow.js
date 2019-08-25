@@ -117,7 +117,7 @@ export default class EditWindow extends React.Component {
           <h3>InfoWindow</h3>
           {this.getIndexes(this.props.dataResume).map(index => {
             return (
-              <div>
+              <div key={index}>
                 <TextField
                    hintText="Title"
                    floatingLabelText="Title"

@@ -1,6 +1,4 @@
 import React from 'react';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ActionLockOpen from 'material-ui/svg-icons/action/lock-open';
 import LoginWindow from '../../components/LoginWindow/LoginWindow';
 import EditWindow from '../../components/EditWindow/EditWindow';
 import Menu from '../../components/Menu/Menu';

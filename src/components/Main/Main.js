@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import P5Wrapper from 'react-p5-wrapper';
 import Background from '../../components/Background/Background'
 import './Main.css';
 import Profile from '../../components/Profile/Profile';
 import InfoView from '../../components/InfoView/InfoView';
-import Menu from '../../components/Menu/Menu';
 import API from '../../API/API';
 import defaultProfileData from '../../defaultdata/defaultProfile.json'
 import defaultResumeData from '../../defaultdata/defaultResume.json'
@@ -34,7 +32,7 @@ class Main extends Component {
   let page=url.split("/")[3]; // http//Andell.eu/PAGE
  
   for (let i = 0; i < availablePages.length; i++) { 
-    if ( availablePages[i].name .split(" ")[0].toLocaleLowerCase() == page.toLocaleLowerCase()) {
+    if ( availablePages[i].name .split(" ")[0].toLocaleLowerCase() === page.toLocaleLowerCase()) {
       return  availablePages[i].name;      
     }    
   }
@@ -54,11 +52,12 @@ class Main extends Component {
         })
     });
 
-    if(name=="Anton Andell"){
-      defaultTheme.main = "#fcba03";
-      defaultTheme.textColor = "#fcba03";
+    if(name==="Anton Andell"){
+      defaultTheme.main = "#0004eb";
+      defaultTheme.textColor = "#0004eb";
       defaultTheme.background = "#fcba03";
-      defaultTheme.textColor2 = "#fcba03";
+      defaultTheme.backgroundLines = "#0004eb"
+      defaultTheme.textColor2 = "#000000";
     }
    
   }
@@ -77,23 +76,25 @@ class Main extends Component {
 
     return (
       <MuiThemeProvider  muiTheme={muiTheme}>
-        <P5Wrapper sketch={Background}/>
-        <ControlPanel
-          dataProfile={this.state.profileData}
-          dataResume={this.state.infoData}
-          dataAllPersons={this.state.allPersonsData}
-          updateCallback={this.fetchAndUpdate}/>
-        <div className={(this.state.mobileView ? "main_mobile": "main")}>
-            <div className="main_grid">
-                <div className="main_profile" id="profileID">
-    				        <Profile
-                      data = {this.state.profileData}/>
-                </div>
-                <div className="main_desc" id="descID">
-    				      <InfoView className="main_desc"
-                    data={this.state.infoData}/>
-                </div>
-           </div>
+        <div>
+          <P5Wrapper sketch={Background} colorTheme={defaultTheme}/>
+          <ControlPanel
+            dataProfile={this.state.profileData}
+            dataResume={this.state.infoData}
+            dataAllPersons={this.state.allPersonsData}
+            updateCallback={this.fetchAndUpdate}/>
+          <div className={(this.state.mobileView ? "main_mobile": "main")}>
+              <div className="main_grid">
+                  <div className="main_profile" id="profileID">
+                      <Profile
+                        data = {this.state.profileData}/>
+                  </div>
+                  <div className="main_desc" id="descID">
+                    <InfoView className="main_desc"
+                      data={this.state.infoData}/>
+                  </div>
+            </div>
+          </div>
         </div>
       </MuiThemeProvider>
     );

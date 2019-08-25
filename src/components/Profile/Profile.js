@@ -37,15 +37,17 @@ export default class Profile extends React.Component {
 						<div className="profileTextHolder">
 							<p><i className="fa fa-location-arrow"></i> {this.props.data.location}</p>
 							<p><i className="fa fa-envelope"></i> {this.props.data.email}</p>
-							<p><i class='fa fa-address-card'/> <a href={this.props.data.resume}>Resume</a></p>
+							<p><i className='fa fa-address-card'/> <a href={this.props.data.resume}>Resume</a></p>
 						</div>
 						<hr className="profiledivider"/>
 						<table className="iconLinksHolder">
-							<tr>
-								<th>{this.displayGithub()}</th>
-									&nbsp;
-								<th>{this.displayLinkedin()}</th>
+							<tbody>
+								<tr>
+									<th>{this.displayGithub()}</th>
+										&nbsp;
+									<th>{this.displayLinkedin()}</th>
 								</tr>
+							</tbody>
 						</table>
 					</div>
 				</Paper>

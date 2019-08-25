@@ -1,21 +1,43 @@
+import defaultTheme from '../../defaultdata/defaultTheme.json'
+
+
 export default function Background (p) {
   var spacing =20;
   var activeTiles = [];
   var tileRows = [];
+  var redraw = false;
+
+  var mainColor = 0;
+  var backgroundColor = 0;
 
   
     p.setup = function () {
-      var canvas = p.createCanvas(window.innerWidth, window.innerHeight);
+      p.createCanvas(window.innerWidth, window.innerHeight);
 
-      p.background('#131521');
+      mainColor = defaultTheme.backgroundLines;
+      backgroundColor = defaultTheme.background;
+
       initPattern();
       drawpattern();
-      p.noLoop();
+
+    };
+
+    p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
+      if(props.colorTheme!==null){
+        if(props.colorTheme.background !== backgroundColor || props.colorTheme.backgroundLines !== mainColor ){
+          backgroundColor = props.colorTheme.background;
+          mainColor = props.colorTheme.backgroundLines;
+          redraw = true;
+        }
+      }
     };
 
   
     p.draw = function () {
-      //p.background(0);
+      if(redraw){
+        drawpattern();
+        redraw = false;
+      }
     };
 
     function initPattern() {
@@ -25,10 +47,10 @@ export default function Background (p) {
         var tileCols = [];
         for (var x = 0; x < p.width; x = x + spacing) {
           if(p.random(1) > 0.9){
-            tileCols.push(new Tile(x,y,1, p.color('#587544'),opacity))
+            tileCols.push(new Tile(x,y,1,opacity))
           }
           else {
-            tileCols.push(new Tile(x,y,0, p.color('#587544'),opacity))
+            tileCols.push(new Tile(x,y,0,opacity))
     
           }
         }
@@ -37,34 +59,33 @@ export default function Background (p) {
     }
 
     function drawpattern(){
-      p.background('#131521');
+      p.background(backgroundColor);
       for (var i = 0; i < tileRows.length; i++) {
         for (var j = 0; j < tileRows[i].length; j++) {
-          tileRows[i][j].draw();
+          tileRows[i][j].draw(mainColor); //color
         }
       }
     }
 
 
 
-    function Tile(x,y,val,color,opacity){
+    function Tile(x,y,val,opacity){
       this.x = x;
       this.y = y;
-      this.color = color;
       this.opacity = opacity;
       this.flipAnimation = false;
       this.angleFactor = 0;
-      this.draw = function() {
+      this.draw = function(color) {
         p.stroke(p.red(color),p.green(color),p.blue(color),opacity);
         p.push();
         if(this.flipAnimation){
           this.rotateAnimation();
         }
         else{
-          p.stroke('#131521');
-          (val == 0 ? p.line(x,y+spacing,x+spacing,y): p.line(x,y,x+spacing,y+spacing));
+          p.stroke(backgroundColor);
+          (val === 0 ? p.line(x,y+spacing,x+spacing,y): p.line(x,y,x+spacing,y+spacing));
           p.stroke(p.red(color),p.green(color),p.blue(color),opacity);
-          (val == 0 ? p.line(x,y+spacing,x+spacing,y): p.line(x,y,x+spacing,y+spacing));
+          (val === 0 ? p.line(x,y+spacing,x+spacing,y): p.line(x,y,x+spacing,y+spacing));
         }
         p.pop();
       }
@@ -83,14 +104,14 @@ export default function Background (p) {
         if(this.angleFactor >= 1){
           this.flipAnimation = false;
           this.angleFactor = 0;
-          (val == 1 ? val = 0: val = 1); //flip
+          (val === 1 ? val = 0: val = 1); //flip
           p.pop();
           this.draw();
         }
         else{
           //stroke(red(color)+10,green(color)+20,blue(color)+10,opacity*1.1);
           //strokeWeight(2);
-          if(val == 0){
+          if(val === 0){
             p.line(-spacing/2,spacing/2,spacing/2,-spacing/2);
           }
           else {
