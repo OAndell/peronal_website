@@ -22,10 +22,21 @@ class Main extends Component {
       profileData: defaultProfileData,
       infoData:defaultResumeData,
       allPersonsData:[],
+      colorTheme: defaultTheme,
     };
     this.fetchAndUpdate = this.fetchAndUpdate.bind(this);
     this.getCurrentPageFromURL = this.getCurrentPageFromURL.bind(this);
+    this.updateStateCallback = this.updateStateCallback.bind(this);
+  }
+
+  updateStateCallback(profileData,infoData,colorTheme) {
+      this.setState({
+        profileData: profileData,
+        infoData:infoData,
+        colorTheme: colorTheme,
+      })
     }
+   
 
  getCurrentPageFromURL(availablePages){
   let url = window.location.href;
@@ -50,39 +61,53 @@ class Main extends Component {
              infoData: response
            })
         })
+        API.getTheme(this.state.profileData.id).then(response => {
+          if(response.length !== 0){
+            let theme = response[0]
+            this.setState({
+              colorTheme:{
+                main:'#'+theme.main,
+                textColor:'#'+theme.textcolor,
+                background:  '#'+theme.background,
+                backgroundLines: '#'+ theme.background_lines,
+                textColor2: '#'+theme.textcolor2
+              }
+            });
+          }
+          else{
+            this.setState({
+              colorTheme: defaultTheme
+            });
+            
+          }
+        })
     });
 
-    if(name==="Anton Andell"){
-      defaultTheme.main = "#0004eb";
-      defaultTheme.textColor = "#0004eb";
-      defaultTheme.background = "#fcba03";
-      defaultTheme.backgroundLines = "#0004eb"
-      defaultTheme.textColor2 = "#000000";
-    }
-   
   }
 
 
   render() {
     const muiTheme = getMuiTheme({
       palette: {
-        primary1Color: defaultTheme.main,
-        textColor: defaultTheme.textColor,
-        canvasColor:defaultTheme.background,
-        shadowColor: defaultTheme.main,
-        disabledColor: defaultTheme.textColor2,
+        primary1Color: this.state.colorTheme.main,
+        textColor: this.state.colorTheme.textColor,
+        canvasColor:this.state.colorTheme.background,
+        shadowColor: this.state.colorTheme.main,
+        disabledColor: this.state.colorTheme.textColor2,
       },
     });
 
     return (
       <MuiThemeProvider  muiTheme={muiTheme}>
         <div>
-          <P5Wrapper sketch={Background} colorTheme={defaultTheme}/>
+          <P5Wrapper sketch={Background} colorTheme={this.state.colorTheme}/>
           <ControlPanel
             dataProfile={this.state.profileData}
             dataResume={this.state.infoData}
             dataAllPersons={this.state.allPersonsData}
-            updateCallback={this.fetchAndUpdate}/>
+            updateCallback={this.fetchAndUpdate}
+            colorTheme={this.state.colorTheme}
+            updateStateCallback={this.updateStateCallback}/>
           <div className={(this.state.mobileView ? "main_mobile": "main")}>
               <div className="main_grid">
                   <div className="main_profile" id="profileID">
@@ -91,7 +116,8 @@ class Main extends Component {
                   </div>
                   <div className="main_desc" id="descID">
                     <InfoView className="main_desc"
-                      data={this.state.infoData}/>
+                      data={this.state.infoData}
+                      colorTheme={this.state.colorTheme}/>
                   </div>
             </div>
           </div>
@@ -108,6 +134,8 @@ class Main extends Component {
       let pageToLoad = this.getCurrentPageFromURL(response);
       this.fetchAndUpdate(pageToLoad);
    });
+
+
   const checkMobileSize = () => {
      if (window.innerWidth<= 1075){
        this.setState({mobileView : true});
@@ -119,6 +147,7 @@ class Main extends Component {
    checkMobileSize();
    window.addEventListener('resize', checkMobileSize);
  }
+
 
 
 }

@@ -95,7 +95,39 @@ module.exports = {
         'Content-Type': 'application/json'
       }
     }).then(x => x.json());
+  },
+
+  getTheme(id){
+    let args ={
+      personID: id
+    }
+    return fetch (BASE_URL + "/theme",{
+      method: 'POST',
+      body: JSON.stringify(args),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(x => x.json());
+  },
+
+  editTheme(username, password, theme){
+    let args ={
+      username: username,
+      password: password,
+      theme: theme
+    }
+    return fetch (BASE_URL + "/theme_edit",{
+      method: 'POST',
+      body: JSON.stringify(args),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(x => x.json());
   }
+
+
+
+
 
 
 }

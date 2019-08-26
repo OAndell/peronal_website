@@ -19,7 +19,7 @@ export default class InfoView extends React.Component {
   					{this.props.data.map(item => {
               return (
                 <AccordionItem title={<div className="title" dangerouslySetInnerHTML={{__html: item.title}}/>}>
-                    <div dangerouslySetInnerHTML={{__html: item.body}}/>
+                    <div style={{color: this.props.colorTheme.textColor2}} dangerouslySetInnerHTML={{__html: item.body}}/>
                 </AccordionItem>
               );
             })}

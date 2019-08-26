@@ -12,6 +12,8 @@ export default class EditWindow extends React.Component {
     this.handleSubmitProfileInfo = this.handleSubmitProfileInfo.bind(this);
     this.handleSubmitResumeSection = this.handleSubmitResumeSection.bind(this);
     this.handleAddNewResumeSection = this.handleAddNewResumeSection.bind(this);
+    this.handleEditTheme = this.handleEditTheme.bind(this);
+
 
   }
 
@@ -31,6 +33,22 @@ export default class EditWindow extends React.Component {
     );
     this.props.updateCallback(this.props.dataProfile.name);
     this.props.handleClose();
+  }
+
+  handleEditTheme(){
+     API.editTheme(
+      this.props.user.username,
+      this.props.user.password,
+     {
+      personID: this.props.dataProfile.id,//str.replace("f0", "");
+      main: this.props.colorTheme.main.replace("#", ""),
+      background: this.props.colorTheme.background.replace("#", ""),
+      background_lines :this.props.colorTheme.backgroundLines.replace("#", ""),
+      textcolor: this.props.colorTheme.textColor.replace("#", ""),
+      textcolor2:this.props.colorTheme.textColor2.replace("#", "")
+    })
+    this.props.updateStateCallback(this.props.dataProfile, this.props.dataResume, this.props.colorTheme);
+
   }
 
   handleSubmitResumeSection(){
@@ -142,9 +160,44 @@ export default class EditWindow extends React.Component {
           primary={true}
           onClick={this.handleAddNewResumeSection}/>
           <br/>
+          <br/>
           <RaisedButton label="Update Resume Info"
           primary={true}
           onClick={this.handleSubmitResumeSection}/>
+          <h3>Color Theme</h3>
+          <TextField
+          hintText="Main/Details"
+          floatingLabelText="Main/Details"
+          defaultValue={this.props.colorTheme.main}
+          onChange={(e) => {this.props.colorTheme.main = e.target.value}}
+          /><br/>
+           <TextField
+          hintText="Background"
+          floatingLabelText="Background"
+          defaultValue={this.props.colorTheme.background}
+          onChange={(e) => {this.props.colorTheme.background = e.target.value}}
+          /><br/>
+          <TextField
+          hintText="Background Lines"
+          floatingLabelText="Background Lines"
+          defaultValue={this.props.colorTheme.backgroundLines}
+          onChange={(e) => {this.props.colorTheme.backgroundLines = e.target.value}}
+          /><br/>
+           <TextField
+          hintText="Text Color"
+          floatingLabelText="Text Color"
+          defaultValue={this.props.colorTheme.textColor}
+          onChange={(e) => {this.props.colorTheme.textColor = e.target.value}}
+          /><br/>
+           <TextField
+          hintText="Secondary Text Color"
+          floatingLabelText="Secondary Text Color"
+          defaultValue={this.props.colorTheme.textColor2}
+          onChange={(e) => {this.props.colorTheme.textColor2 = e.target.value}}
+          /><br/>
+          <RaisedButton label="Edit Theme"
+          primary={true}
+          onClick={this.handleEditTheme}/>
         </Dialog>
 
     );
