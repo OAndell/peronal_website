@@ -45,7 +45,9 @@ export default class EditWindow extends React.Component {
       background: this.props.colorTheme.background.replace("#", ""),
       background_lines :this.props.colorTheme.backgroundLines.replace("#", ""),
       textcolor: this.props.colorTheme.textColor.replace("#", ""),
-      textcolor2:this.props.colorTheme.textColor2.replace("#", "")
+      textcolor2:this.props.colorTheme.textColor2.replace("#", ""),
+      papercolor:this.props.colorTheme.paperColor.replace("#", "")
+
     })
     this.props.updateStateCallback(this.props.dataProfile, this.props.dataResume, this.props.colorTheme);
 
@@ -194,6 +196,12 @@ export default class EditWindow extends React.Component {
           floatingLabelText="Secondary Text Color"
           defaultValue={this.props.colorTheme.textColor2}
           onChange={(e) => {this.props.colorTheme.textColor2 = e.target.value}}
+          /><br/>
+           <TextField
+          hintText="Paper Color"
+          floatingLabelText="Paper Color"
+          defaultValue={this.props.colorTheme.paperColor}
+          onChange={(e) => {this.props.colorTheme.paperColor = e.target.value}}
           /><br/>
           <RaisedButton label="Edit Theme"
           primary={true}

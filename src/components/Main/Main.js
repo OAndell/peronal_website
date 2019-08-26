@@ -19,6 +19,7 @@ class Main extends Component {
     super(props)
     this.state = {
       mobileView : false,
+      loading: true,
       profileData: defaultProfileData,
       infoData:defaultResumeData,
       allPersonsData:[],
@@ -51,6 +52,7 @@ class Main extends Component {
 }
 
   fetchAndUpdate(name){
+    this.setState({loading:true})
     API.getPersonData(name).then(response => {
         this.setState({
           profileData: response[0]
@@ -69,8 +71,9 @@ class Main extends Component {
                 main:'#'+theme.main,
                 textColor:'#'+theme.textcolor,
                 background:  '#'+theme.background,
-                backgroundLines: '#'+ theme.background_lines,
-                textColor2: '#'+theme.textcolor2
+                backgroundLines: '#'+theme.background_lines,
+                textColor2: '#'+theme.textcolor2,
+                paperColor: '#'+theme.papercolor
               }
             });
           }
@@ -78,8 +81,8 @@ class Main extends Component {
             this.setState({
               colorTheme: defaultTheme
             });
-            
           }
+          this.setState({loading:false})
         })
     });
 
@@ -91,7 +94,7 @@ class Main extends Component {
       palette: {
         primary1Color: this.state.colorTheme.main,
         textColor: this.state.colorTheme.textColor,
-        canvasColor:this.state.colorTheme.background,
+        canvasColor:this.state.colorTheme.paperColor,
         shadowColor: this.state.colorTheme.main,
         disabledColor: this.state.colorTheme.textColor2,
       },
@@ -100,7 +103,6 @@ class Main extends Component {
     return (
       <MuiThemeProvider  muiTheme={muiTheme}>
         <div>
-          <P5Wrapper sketch={Background} colorTheme={this.state.colorTheme}/>
           <ControlPanel
             dataProfile={this.state.profileData}
             dataResume={this.state.infoData}
@@ -108,7 +110,9 @@ class Main extends Component {
             updateCallback={this.fetchAndUpdate}
             colorTheme={this.state.colorTheme}
             updateStateCallback={this.updateStateCallback}/>
-          <div className={(this.state.mobileView ? "main_mobile": "main")}>
+          <P5Wrapper sketch={Background} colorTheme={this.state.colorTheme}/>
+          <div style={ this.state.loading ? {display:'none'}:{display:'inline'}} 
+          className={(this.state.mobileView ? "main_mobile": "main")}>
               <div className="main_grid">
                   <div className="main_profile" id="profileID">
                       <Profile
