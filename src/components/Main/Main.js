@@ -84,6 +84,8 @@ class Main extends Component {
           }
           this.setState({loading:false})
         })
+        window.history.pushState(null, '', name.split(" ")[0]); //update url
+
     });
 
   }

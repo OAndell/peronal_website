@@ -35,6 +35,8 @@ export default function Background (p) {
   
     p.draw = function () {
       if(redraw){
+        //tileRows = []
+        //initPattern();
         drawpattern();
         redraw = false;
       }

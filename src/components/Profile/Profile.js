@@ -35,17 +35,25 @@ export default class Profile extends React.Component {
 						<h2>{this.props.data.title}</h2>
 						<hr className="profiledivider"/>
 						<div className="profileTextHolder">
-							<p><i className="fa fa-location-arrow"></i> {this.props.data.location}</p>
-							<p><i className="fa fa-envelope"></i> {this.props.data.email}</p>
-							<p><i className='fa fa-address-card'/> <a href={this.props.data.resume}>Resume</a></p>
+							<p style={this.props.data.location === "" ? {display:'none'} : {}}>
+								<i className="fa fa-location-arrow"></i> {this.props.data.location}</p>
+							<p style={this.props.data.email === "" ? {display:'none'} : {}}>
+								<i className="fa fa-envelope"></i> {this.props.data.email}</p>
+							<p style={this.props.data.resume === "" ? {display:'none'} : {}}>
+								<i className='fa fa-address-card'/> <a href={this.props.data.resume}>Resume</a></p>
 						</div>
 						<hr className="profiledivider"/>
-						<table className="iconLinksHolder">
+						<table className="iconLinksHolder" cellpadding="10">
 							<tbody>
 								<tr>
-									<th>{this.displayGithub()}</th>
-										&nbsp;
-									<th>{this.displayLinkedin()}</th>
+									<th style={this.props.data.github === "" ? {display:'none'} : {}}>
+										<p>
+											<a href={this.props.data.github}><i className="fa fa-github"></i></a></p>
+									</th>
+									<th style={this.props.data.linkedin === "" ? {display:'none'} : {}}>
+										<p>
+											<a href={this.props.data.linkedin}><i className="fa fa-linkedin"></i></a></p>
+									</th>
 								</tr>
 							</tbody>
 						</table>

@@ -16,10 +16,10 @@ export default class InfoView extends React.Component {
     return(
       <Paper style={style} zDepth={2}>
   			<div className="resumeHolder">
-  				<Accordion allowMultiple={true}>
+  				<Accordion  allowMultiple={true} style={{borderBottom: "1px solid" + this.props.colorTheme.textColor +"5c" }}>
   					{this.props.data.map((item, index) => {
               return (
-                <AccordionItem expanded={index === 0} title={<div className="title" dangerouslySetInnerHTML={{__html: item.title}}/>}>
+                <AccordionItem expanded={index === 0} title={<div className="title" style={{borderTop: "1px solid" + this.props.colorTheme.textColor +"5c" }} dangerouslySetInnerHTML={{__html: item.title}}/>}>
                     <div style={{color: this.props.colorTheme.textColor2}} dangerouslySetInnerHTML={{__html: item.body}}/>
                 </AccordionItem>
               );
