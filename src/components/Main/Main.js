@@ -12,8 +12,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ControlPanel from '../../components/ControlPanel/ControlPanel'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-
-
 class Main extends Component {
   constructor(props){
     super(props)
@@ -92,6 +90,7 @@ class Main extends Component {
 
 
   render() {
+    document.body.style.backgroundColor = this.state.colorTheme.background;
     const muiTheme = getMuiTheme({
       palette: {
         primary1Color: this.state.colorTheme.main,
@@ -101,6 +100,7 @@ class Main extends Component {
         disabledColor: this.state.colorTheme.textColor2,
       },
     });
+
 
     return (
       <MuiThemeProvider  muiTheme={muiTheme}>
@@ -153,7 +153,6 @@ class Main extends Component {
    checkMobileSize();
    window.addEventListener('resize', checkMobileSize);
  }
-
 
 
 }

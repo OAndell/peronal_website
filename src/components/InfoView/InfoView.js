@@ -12,7 +12,6 @@ export default class InfoView extends React.Component {
       textAlign: 'center',
       display: 'inline-block',
     };
-    console.log(this.props.data)
     return(
       <Paper style={style} zDepth={2}>
   			<div className="resumeHolder">
